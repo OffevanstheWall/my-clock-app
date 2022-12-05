@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, useState, useEffect } from "react";
+import "./App.css";
+import "./Clock.tsx";
 
-function App() {
+export default function App() {
+  function pad(num: number) {
+    return ("0" + num).slice(-2);
+  }
+  const [date, setDate] = useState(new Date());
+
+  function updateClock() {
+    setDate(new Date());
+  }
+
+  useEffect(() => {
+    const timerID = setInterval(updateClock, 1000);
+    return function clearTimerID() {
+      clearInterval(timerID);
+    };
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="Date">
+        <div>{date.getMonth()}</div>-<div>{date.getDate()}</div>-
+        <div>{date.getFullYear()}</div>
+      </div>
+
+      <div className="Clock">
+        <div>{date.getHours()}</div>:<div>{pad(date.getMinutes())}</div>:
+        <div>{pad(date.getSeconds())}</div>
+      </div>
     </div>
   );
 }
-
-export default App;
