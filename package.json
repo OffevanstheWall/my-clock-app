@@ -1,5 +1,6 @@
 {
-  "name": "my-clock-app",
+  "name": "my-clock-app", 
+  "homepage": "https://offevansthewall.github.io/my-clock-app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
